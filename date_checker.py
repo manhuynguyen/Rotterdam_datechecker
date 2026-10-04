@@ -117,4 +117,21 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import time
+
+    CHECK_INTERVAL_SECONDS = 300  # 5 minutes
+
+    print('Starting 5-minute appointment monitoring loop...')
+
+    # Runs 10 cycles (50 minutes total) per GitHub Action execution
+    for i in range(10):
+        print(f'\n--- Check iteration {i+1} of 10 ---')
+        try:
+            main()
+        except Exception as e:
+            print(f'Loop error: {e}')
+
+        # Skip sleep on the last iteration so the job finishes cleanly
+        if i < 9:
+            print('Sleeping for 5 minutes until next check...')
+            time.sleep(CHECK_INTERVAL_SECONDS)
