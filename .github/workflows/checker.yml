@@ -4,11 +4,12 @@ on:
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
-  # Automatically re-trigger whenever this workflow completes successfully
   workflow_run:
     workflows: ["Rotterdam Appointment Checker"]
     types:
       - completed
+    branches:
+      - main
 
 jobs:
   check-appointments:
