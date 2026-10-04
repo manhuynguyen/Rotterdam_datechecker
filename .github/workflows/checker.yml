@@ -2,14 +2,9 @@ name: Rotterdam Appointment Checker
 
 on:
   schedule:
+    # Triggers every hour on the hour
     - cron: '0 * * * *'
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Rotterdam Appointment Checker"]
-    types:
-      - completed
-    branches:
-      - main
 
 jobs:
   check-appointments:
