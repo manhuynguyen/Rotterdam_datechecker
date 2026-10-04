@@ -2,14 +2,18 @@ name: Rotterdam Appointment Checker
 
 on:
   schedule:
-    # Trigger hourly to start a new monitoring cycle
     - cron: '0 * * * *'
   workflow_dispatch:
+  # Automatically re-trigger whenever this workflow completes successfully
+  workflow_run:
+    workflows: ["Rotterdam Appointment Checker"]
+    types:
+      - completed
 
 jobs:
   check-appointments:
     runs-on: ubuntu-latest
-    timeout-minutes: 55 # Run for 55 minutes, then clean up for the next hourly trigger
+    timeout-minutes: 55
 
     steps:
       - name: Checkout Repository Code
@@ -27,6 +31,7 @@ jobs:
 
       - name: Execute Date Checker Script
         env:
+          PYTHONUNBUFFERED: '1'
           BOT_TOKEN: '8808264378:AAE07qApkQ-q7iYB4TwXjIkz-HGrPKW7hik'
-          CHAT_ID: '5947953249' # Replace with your actual Telegram Chat ID
+          CHAT_ID: '5947953249'
         run: python date_checker.py
