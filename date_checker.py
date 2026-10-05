@@ -124,7 +124,7 @@ if __name__ == '__main__':
     print('Starting 5-minute appointment monitoring loop...')
 
     # Runs 10 cycles (50 minutes total) per GitHub Action execution
-    for i in range(10):
+    for i in range(11):
         print(f'\n--- Check iteration {i+1} of 10 ---')
         try:
             main()
