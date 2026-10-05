@@ -3,7 +3,7 @@ name: Rotterdam Appointment Checker
 on:
   schedule:
     # Triggers every hour on the hour
-    - cron: '0 * * * *'
+    - cron: '53 * * * *'
   workflow_dispatch:
 
 jobs:
